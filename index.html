@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text To Speech Page</title>
+    <link href="./styles/tts.css" rel="stylesheet"/>
+</head>
+<body>
+    <main>
+        <form class="ttsInputForm">
+            <label>Enter Message: </label>
+            <input type="text" name="message here" id="inputField"/>
+            <button onclick="makeNoise()">Make Noise</button>
+        </form>
+        <p id="display"></p>
+    </main>
+</body>
+<script>
+  function makeNoise() {
+      var userMessage = document.getElementById("inputField").value;
+      var pTag = document.getElementById("display");
+
+      const speak = (msg) => {
+          const sp = new SpeechSynthesisUtterance(msg);
+          [sp.voice] = speechSynthesis.getVoices();
+         speechSynthesis.speak(sp);
+      };
+
+      speak(userMessage);
+      pTag.innerHTML = userMessage;
+  }
+</script>
+</html>
